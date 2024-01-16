@@ -2,6 +2,25 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize Mermaid
     mermaid.initialize({ startOnLoad: false });
 
+    // Function to handle saving content as a file
+    function saveContentToFile(editor) {
+        const filename = prompt("Enter the filename (without extension):", "markdown");
+        if (filename) {
+            const content = editor.value();
+            const blob = new Blob([content], { type: 'text/markdown;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename + ".md";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    }
+
+
     // Initialize EasyMDE
     var easyMDE = new EasyMDE({
         element: document.getElementById('markdown'),
@@ -15,7 +34,16 @@ document.addEventListener('DOMContentLoaded', function() {
             singleLineBreaks: false,
             codeSyntaxHighlighting: true,
         },
-        toolbar: ["bold", "italic", "heading", "|", "quote", "code", "unordered-list", "ordered-list", "|", "link", "image", "|", "preview", "side-by-side", "fullscreen"],
+        toolbar: ["bold", "italic", "heading", "|", "quote", "code", "unordered-list", "ordered-list", "|", "link", "image", "|", "preview", "side-by-side", "fullscreen",
+        {
+            name: "save",
+            action: function(editor) {
+                saveContentToFile(editor);
+            },
+            className: "fa fa-save",
+            title: "Save Content",
+        }
+        ],
     });
 
     // Function to update the output

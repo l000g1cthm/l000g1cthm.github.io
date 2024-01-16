@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Markdown to HTML Converter</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js"></script>
+    <script src="script.js" defer></script>
+    <link href="https://assets.tryhackme.com/css/utils/terminal.css" rel="stylesheet" />
+	<link href="https://assets.tryhackme.com/css/libs/prism.css?v=0.1" rel="stylesheet" />
+    <script src="https://assets.tryhackme.com/js/libs/prism.js?v=0.1"></script>
+</head>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">MD2HTML</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="index.html">MD2HTML</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" target="_blank" href="https://odacavothm.github.io/terminal-builder/">Terminal Builder</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" target="_blank" href="https://thmimageupload.cmnatic.co.uk/">Image Uploader</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+<body>
+    <div class="mt-3" style=" margin-left: 1%; margin-right: 1%; ">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <div class="row" style=" padding: 0.5% 2%;">
+                    <h4>Markdown</h4>
+                </div>
+                <textarea id="markdown" class="form-control" placeholder="Enter Markdown" style="height: 600px;"></textarea>
+            </div>
+            <div class="col-md-6 mb-3">
+                <div class="row" style=" padding: 0 2%;margin-bottom: 1%;">
+                    <button id="copyButton" class="btn btn-outline-dark float-right">Copy HTML</button>
+                </div>
+                <div id="htmlOutput" class="border p-3" style="height: 600px; overflow-y: auto;"></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById('copyButton').addEventListener('click', function() {
+            const outputHTML = document.getElementById('htmlOutput').innerHTML;
+            navigator.clipboard.writeText(outputHTML).then(() => {
+            }).catch(err => {
+                console.error('Error copying HTML to clipboard', err);
+            });
+        });
+    </script>
+</body>
+</html>

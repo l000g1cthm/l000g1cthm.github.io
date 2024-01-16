@@ -3,12 +3,14 @@
 <head>
     <title>Markdown to HTML Converter</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script src="https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js"></script>
-    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="easymde.css">
     <link href="https://assets.tryhackme.com/css/utils/terminal.css" rel="stylesheet" />
 	<link href="https://assets.tryhackme.com/css/libs/prism.css?v=0.1" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
     <script src="https://assets.tryhackme.com/js/libs/prism.js?v=0.1"></script>
+    <script src="script.js" defer></script>
 </head>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -39,24 +41,15 @@
                 <div class="row" style=" padding: 0.5% 2%;">
                     <h4>Markdown</h4>
                 </div>
-                <textarea id="markdown" class="form-control" placeholder="Enter Markdown" style="height: 600px;"></textarea>
+                <textarea id="markdown"></textarea>
             </div>
             <div class="col-md-6 mb-3">
                 <div class="row" style=" padding: 0 2%;margin-bottom: 1%;">
                     <button id="copyButton" class="btn btn-outline-dark float-right">Copy HTML</button>
                 </div>
-                <div id="htmlOutput" class="border p-3" style="height: 600px; overflow-y: auto;"></div>
+                <div id="htmlOutput" class="border p-3" style="height: 670px; overflow-y: auto;"></div>
             </div>
         </div>
     </div>
-    <script>
-        document.getElementById('copyButton').addEventListener('click', function() {
-            const outputHTML = document.getElementById('htmlOutput').innerHTML;
-            navigator.clipboard.writeText(outputHTML).then(() => {
-            }).catch(err => {
-                console.error('Error copying HTML to clipboard', err);
-            });
-        });
-    </script>
 </body>
 </html>

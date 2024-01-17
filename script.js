@@ -57,6 +57,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Process Mermaid diagrams
         processMermaidDiagrams();
+
+        // Highlight code blocks using Prism.js
+        Prism.highlightAll();
     }
 
     // Process Mermaid Diagrams

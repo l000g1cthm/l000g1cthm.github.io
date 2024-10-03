@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return `
             <div class="terminal-container">
                 <div class="terminal-content">
-                    <div class="terminal-top">Example Terminal</div>
+                    <div class="terminal-top">Terminal</div>
                     <pre class="terminal-code">
                         <code class="language-shell-session">${code}</code>
                     </pre>

@@ -47,19 +47,42 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Function to update the output
+    // function updateOutput() {
+    //     // Get raw Markdown from EasyMDE
+    //     const rawMarkdown = easyMDE.value();
+
+    //     // Convert Markdown to HTML
+    //     const renderedHTML = marked.parse(rawMarkdown);
+    //     document.getElementById('htmlOutput').innerHTML = renderedHTML;
+
+    //     // Process Mermaid diagrams
+    //     processMermaidDiagrams();
+    // }
+
     function updateOutput() {
         // Get raw Markdown from EasyMDE
         const rawMarkdown = easyMDE.value();
 
         // Convert Markdown to HTML
         const renderedHTML = marked.parse(rawMarkdown);
-        document.getElementById('htmlOutput').innerHTML = renderedHTML;
+
+        // Custom handling for 'terminal-linux' blocks
+        const customHTML = renderedHTML.replace(/<pre><code class="language-terminal-linux">([\s\S]*?)<\/code><\/pre>/g, (match, code) => {
+            return `
+            <div class="terminal-container">
+                <div class="terminal-content">
+                    <div class="terminal-top">Example Terminal</div>
+                    <pre class="terminal-code">
+                        <code class="language-shell-session">${code}</code>
+                    </pre>
+                </div>
+            </div>`;
+        });
+
+        document.getElementById('htmlOutput').innerHTML = customHTML;
 
         // Process Mermaid diagrams
         processMermaidDiagrams();
-
-        // Highlight code blocks using Prism.js
-        Prism.highlightAll();
     }
 
     // Process Mermaid Diagrams
